@@ -1,16 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    // Tells Next.js not to bundle these specifically
+    // Tells Next.js not to bundle these dependencies
     serverComponentsExternalPackages: [
-      'playwright-core', 
+      'playwright-core',
       '@sparticuz/chromium-min'
     ],
-    // Explicitly include the playwright-core files in the serverless function output
+    // Explicitly include the playwright-core files in the Vercel function output
     outputFileTracingIncludes: {
       '/api/**/*': ['./node_modules/playwright-core/**/*'],
     },
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
