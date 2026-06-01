@@ -158,6 +158,7 @@ export async function GET(req) {
     // LAUNCH BROWSER
     // =====================================================
 
+// ... existing code ...
     if (process.env.NODE_ENV === 'development') {
       const { chromium } = await import('playwright-core')
       browser = await chromium.launch({ headless: true })
@@ -167,12 +168,13 @@ export async function GET(req) {
       browser = await playwright.launch({
         args: chromium.args,
         executablePath: await chromium.executablePath(
-          'https://github.com/Sparticuz/chromium/releases/download/v138.0.1/chromium-v138.0.1-pack.tar'
+          // Update this URL to match your package.json version exactly
+          'https://github.com/Sparticuz/chromium/releases/download/v149.0.0/chromium-v149.0.0-pack.tar'
         ),
         headless: true,
       })
     }
-
+// ... existing code ...
     const { devices } = await import('playwright-core')
 
     const deviceConfig =
@@ -200,6 +202,7 @@ export async function GET(req) {
         if (status === 200 && validators.some(v => text.includes(v))) return 200
         return 404
       } catch { return 404 }
+
     }
 
     const [robotsRes, sitemapRes] = await Promise.all([
