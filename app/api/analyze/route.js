@@ -154,11 +154,6 @@ export async function GET(req) {
   let browser = null;
 
   try {
-    // =====================================================
-    // LAUNCH BROWSER
-    // =====================================================
-
-// ... existing code ...
     if (process.env.NODE_ENV === 'development') {
       const { chromium } = await import('playwright-core')
       browser = await chromium.launch({ headless: true })
